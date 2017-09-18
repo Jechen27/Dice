@@ -2,6 +2,7 @@ int total = 0;
 void setup()
 {
   noLoop();
+  size (300,300)
 }
 void draw()
 {
