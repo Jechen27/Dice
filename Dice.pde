@@ -1,5 +1,4 @@
-int x =20;
-int y =20;
+int total = 0;
 void setup()
 {
   noLoop();
@@ -7,16 +6,23 @@ void setup()
 void draw()
 {
   background (300,300);
-  Die bob = new Die(x,y);
-  //for (int x=10;x<300;x=x+20)
-  //{
-    bob.roll();
-    bob.show();
-  //}
+  for (int y=30;y<260;y=y+40)
+  {
+   for (int x=30;x<300;x=x+40)
+   {
+     Die bob = new Die(x,y);
+     bob.roll();
+     bob.show();
+   }
+  }
+  fill(255);
+  textSize(20);
+  text("The sum of all dice is " + total,20,270);
 }
 void mousePressed()
 {
   redraw();
+  total = 0;
 }
 class Die //models one single dice cube
 {
@@ -28,7 +34,8 @@ class Die //models one single dice cube
   }
   void roll()
   {
-    numRoll=1;
+    numRoll=(int)(Math.random()*6+1);
+    total = total + numRoll;
   }
   void show()
   {
@@ -45,11 +52,42 @@ class Die //models one single dice cube
      fill(0);
      if (numRoll == 1)
      {
-      ellipse(x,y,5,5);
+      ellipse(myX,myY,8,8);
      }
      if (numRoll == 2)
      {
-      ellipse(x-10,y-10);
+      ellipse(myX-9,myY-9,8,8);
+      ellipse(myX+9,myY+9,8,8);
      }  
+     if (numRoll == 3)
+     {
+       ellipse(myX-9,myY-9,8,8);
+       ellipse(myX,myY,8,8);
+       ellipse(myX+9,myY+9,8,8);
+     }
+     if (numRoll == 4)
+     {
+      ellipse(myX-9,myY-9,8,8);
+      ellipse(myX+9,myY+9,8,8);
+      ellipse(myX+9,myY-9,8,8);
+      ellipse(myX-9,myY+9,8,8);
+     }
+     if (numRoll == 5)
+     {
+      ellipse(myX-9,myY-9,8,8);
+      ellipse(myX+9,myY+9,8,8);
+      ellipse(myX,myY,8,8);
+      ellipse(myX+9,myY-9,8,8);
+      ellipse(myX-9,myY+9,8,8); 
+     }
+     if (numRoll == 6)
+     {
+      ellipse(myX-9,myY-9,8,8);
+      ellipse(myX+9,myY+9,8,8);
+      ellipse(myX-9,myY,8,8);
+      ellipse(myX+9,myY,8,8);
+      ellipse(myX+9,myY-9,8,8);
+      ellipse(myX-9,myY+9,8,8);
+     }
   }
 }
